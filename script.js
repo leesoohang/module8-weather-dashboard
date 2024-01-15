@@ -11,6 +11,7 @@ var current = "https://api.openweathermap.org/data/2.5/weather?units=metric&appi
 var history = $("<button>");
 history.addClass("btn btn-secondary mb-2");
 
+
 if (city) {
     $("#history").append(history);
 } else {
@@ -49,6 +50,7 @@ fetch(forecast).then( function(response) {
     return response.json()
 }).then( function(future) {
     var future = future.list;
+// choose the data of every 8th item of the forecast to get data from every 12 hours
     var timeDay = [7,15,23,31,39]
       $("#forecast-group").empty();  
     for (i = 0; i < 5; i++) {
@@ -70,12 +72,19 @@ fetch(forecast).then( function(response) {
     "<p class='card-text'> Temp: " + temp + "℃" + 
     "<p class='card-text'> Wind: " + wind + " kph" + 
     "<p class='card-text'> Humidity: " + humidity + " %");
-
 }
-        
-
-        }
+     
+   }
 )
+
+$("#history").append("<input class='btn btn-light' id='clear' type='reset' value='Clear history'>")
+
+// clear history event
+$("#clear").click( function(){
+    $("#history").empty()}
+);
 })
+
+
 
 
