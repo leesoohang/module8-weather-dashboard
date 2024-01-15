@@ -49,38 +49,33 @@ fetch(forecast).then( function(response) {
     return response.json()
 }).then( function(future) {
     var future = future.list;
-// select 12 noon weather data as forecast of the day
+    var timeDay = [7,15,23,31,39]
+      $("#forecast-group").empty();  
     for (i = 0; i < 5; i++) {
-        array = future[];
-        if ((future[i].dt).includes("12:00:00")) {
-             array = future[i]
-            return future;
-            
-        }
-        // return arrays of 5 day forecast
-       
-       
-        console.log(array);
-    $("#forecast-group").empty();
-    var date = dayjs().format("DD MMM YYYY");
-    var temp = future[5].main.temp;
-    var wind = future[5].wind.speed;
-    var humidity = future[5].main.humidity;
-    var icon = future[5].weather[0].icon;
-    // console.log(future);
+
+    var date = dayjs.unix(future[timeDay[i]].dt).format("DD MMM YYYY");
+    var temp = future[timeDay[i]].main.temp;
+    var wind = future[timeDay[i]].wind.speed;
+    var humidity = future[timeDay[i]].main.humidity;
+    var icon = future[timeDay[i]].weather[0].icon;
+    console.log(future[timeDay[i]]);
 // empty cards so there won't be duplicate results 
-} 
+ 
 // create forecast card group component
-    $("#forecast-group").append("<div class='col'><div class='card'><div class='card-body' id='future'>");
-    $("#future").append("<h3 class='card-title'>" + date);
-    $("#future").append("<p class='card-text'>" + "<img src='https://openweathermap.org/img/wn/" + icon + ".png'>" +
-    "<p> Temp: " + temp + "℃" + 
-    "<p> Wind: " + wind + " kph" + 
-    "<p> Humidity: " + humidity + " %");
-   
+ 
+
+    $("#forecast-group").append("<div class='col'><div class='card' id='daily'><div class='card-body'>" +
+    "<h2 class='card-title'>" + date + 
+    "<p><img src='https://openweathermap.org/img/wn/" + icon + ".png'>" +
+    "<p class='card-text'> Temp: " + temp + "℃" + 
+    "<p class='card-text'> Wind: " + wind + " kph" + 
+    "<p class='card-text'> Humidity: " + humidity + " %");
+
 }
+        
+
+        }
 )
-}
+})
 
 
-)
