@@ -64,8 +64,8 @@ fetch(forecast).then( function(response) {
 // create forecast card group component
  
 
-    $("#forecast-group").append("<div class='col'><div class='card' id='daily'><div class='card-body'>" +
-    "<h2 class='card-title'>" + date + 
+    $("#forecast-group").append("<div class='col'><div class='card bg-primary-subtle'><div class='card-body'>" +
+    "<h5 class='card-title'>" + date + 
     "<p><img src='https://openweathermap.org/img/wn/" + icon + ".png'>" +
     "<p class='card-text'> Temp: " + temp + "℃" + 
     "<p class='card-text'> Wind: " + wind + " kph" + 
