@@ -10,7 +10,7 @@ Link to the live application:
 https://leesoohang.github.io/module8-weather-dashboard
 
 Link to the repository:
-https://github.com/leesoohang/module7-weather-dashboard.git
+https://github.com/leesoohang/module8-weather-dashboard.git
 
 
 ## Installation
