@@ -1,4 +1,3 @@
-
 var cities = [];
 // get curernt weather and forecast
 function getWeather(city) {
@@ -55,11 +54,7 @@ fetch(forecast).then( function(response) {
     var humidity = future[timeDay[i]].main.humidity;
     var icon = future[timeDay[i]].weather[0].icon;
 
-// empty cards so there won't be duplicate results 
- 
 // create forecast card group component
- 
-
     $("#forecast-group").append("<div class='col'><div class='card bg-primary-subtle'><div class='card-body'>" +
     "<h5 class='card-title'>" + date + 
     "<p><img src='https://openweathermap.org/img/wn/" + icon + ".png'>" +
@@ -68,9 +63,9 @@ fetch(forecast).then( function(response) {
     "<p class='card-text'> Humidity: " + humidity + " %");
 }
 })
-     
 }
 
+// display weather data when clicking search
 $("#search-button").click( function(event) {
     event.preventDefault();
     var cityInput = $("#search-input").val()
@@ -78,28 +73,7 @@ $("#search-button").click( function(event) {
     }
 )
 
-
-// local storage
-
-function loadCities() {
-    var citiesLoaded = localStorage.getItem("cities")
-    if(!citiesLoaded) {
-        return false;
-    }
-    
-    citiesLoaded = JSON.parse(citiesLoaded);
-    
-    for (j = 0; j < citiesLoaded.length; j++) {
-        addHistory(citiesLoaded[j])
-        cities.push(citiesLoaded[j])
-    }
-}
-
-function cityHistory() {
-    localStorage.setItem("cities", JSON.stringify(cities));
-}
-
-
+// listing all recent searches available for clicking
 function addHistory(city) {
     var history = $("<button>");
     history.addClass("btn btn-secondary mb-2 city");
@@ -110,8 +84,26 @@ function addHistory(city) {
        var city = $(this).attr("value")
         getWeather(city);
     });      
-    
+}
+
+
+// set up local storage by storing cities searched in an array
+function cityHistory() {
+    localStorage.setItem("cities", JSON.stringify(cities));
+}
+
+function loadCities() {
+    var citiesLoaded = localStorage.getItem("cities")
+    if(!citiesLoaded) {
+        return false;
     }
+    citiesLoaded = JSON.parse(citiesLoaded);
+    
+    for (j = 0; j < citiesLoaded.length; j++) {
+        addHistory(citiesLoaded[j])
+        cities.push(citiesLoaded[j])
+    }
+}
 
   
 
