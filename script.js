@@ -102,15 +102,15 @@ function cityHistory() {
 
 function addHistory(city) {
     var history = $("<button>");
-    
     history.addClass("btn btn-secondary mb-2 city");
-    history.attr("value", city)
+    history.attr("value", city);
     history.text(city);
-    $(".city").click( function() {
-        let cityInput = $(this).attr("value")
-        getWeather(cityInput);
-    });      
     $("#history").append(history);
+    $(".city").click( function() {
+       var city = $(this).attr("value")
+        getWeather(city);
+    });      
+    
     }
 
   
